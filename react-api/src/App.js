@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-// requestAnimationFrame('../env').config();
 const REVIEWNUM = 10;
 
 
@@ -25,8 +24,9 @@ class PieChart extends Component {
 		var term = "vegan";
 		var location = "&location=Southwest+portland";
 		var sort = "&sort_by=review_count"
+		// var sort ="";
 		const proxyurl = "https://cors-anywhere.herokuapp.com/";
-		myHeaders.append("Authorization", process.env.REACT_APP_API_KEY);
+		myHeaders.append("Authorization", process.env.REACT_APP_APIKEY);
 
 		var requestOptions = {
 			method: 'GET',
@@ -62,7 +62,6 @@ class PieChart extends Component {
 
 	render() {
 		const { error, isLoaded, data } = this.state;
-
 		// Will continue to load until the data has finally been fully aquired
 		if (error) {
 			return <div>Error: {error.message}</div>;
@@ -79,27 +78,28 @@ class PieChart extends Component {
 				exportEnabled: true,
 				animationEnabled: true,
 				title: {
-					text: "Yelp search"
+					text: "Yelp Most Reviewed "
 				},
 				data: [{
 					type: "pie",
 					startAngle: 74,
-					toolTipContent: "<b>{label}</b>: {y}%",
-					showInLegend: "true",
+					percentFormatString: "#0.##",
+					toolTipContent: "<b>{label}</b>: #percent%  <br/> {location} <br/> {rating}/5 Stars {review} Reviews {price}",
+					// showInLegend: "true",
 					legendText: "{label}",
 					indexLabelFontSize: 15,
-					indexLabel: "{label} - {y}%",
+					indexLabel: "{label} - #percent%",
 					dataPoints: [
-						{ y: 100 * (Number(data[0].review_count)) / totalReviews, label: data[0].name },
-						{ y: 100 * (Number(data[1].review_count)) / totalReviews, label: data[1].name },
-						{ y: 100 * (Number(data[2].review_count)) / totalReviews, label: data[2].name },
-						{ y: 100 * (Number(data[3].review_count)) / totalReviews, label: data[3].name },
-						{ y: 100 * (Number(data[4].review_count)) / totalReviews, label: data[4].name },
-						{ y: 100 * (Number(data[5].review_count)) / totalReviews, label: data[5].name },
-						{ y: 100 * (Number(data[6].review_count)) / totalReviews, label: data[6].name },
-						{ y: 100 * (Number(data[7].review_count)) / totalReviews, label: data[7].name },
-						{ y: 100 * (Number(data[8].review_count)) / totalReviews, label: data[8].name },
-						{ y: 100 * (Number(data[9].review_count)) / totalReviews, label: data[9].name },
+						{ y: 100 * (Number(data[0].review_count)) / totalReviews, label: data[0].name, rating: data[0].rating, price: data[0].price, location: data[0].location.display_address, review: data[0].review_count},
+						{ y: 100 * (Number(data[1].review_count)) / totalReviews, label: data[1].name, rating: data[1].rating, price: data[1].price, location: data[1].location.display_address, review: data[1].review_count},
+						{ y: 100 * (Number(data[2].review_count)) / totalReviews, label: data[2].name, rating: data[2].rating, price: data[2].price, location: data[2].location.display_address, review: data[2].review_count},
+						{ y: 100 * (Number(data[3].review_count)) / totalReviews, label: data[3].name, rating: data[3].rating, price: data[3].price, location: data[3].location.display_address, review: data[3].review_count},
+						{ y: 100 * (Number(data[4].review_count)) / totalReviews, label: data[4].name, rating: data[4].rating, price: data[4].price, location: data[4].location.display_address, review: data[4].review_count},
+						{ y: 100 * (Number(data[5].review_count)) / totalReviews, label: data[5].name, rating: data[5].rating, price: data[5].price, location: data[5].location.display_address, review: data[5].review_count},
+						{ y: 100 * (Number(data[6].review_count)) / totalReviews, label: data[6].name, rating: data[6].rating, price: data[6].price, location: data[6].location.display_address, review: data[6].review_count},
+						{ y: 100 * (Number(data[7].review_count)) / totalReviews, label: data[7].name, rating: data[7].rating, price: data[7].price, location: data[7].location.display_address, review: data[7].review_count},
+						{ y: 100 * (Number(data[8].review_count)) / totalReviews, label: data[8].name, rating: data[8].rating, price: data[8].price, location: data[8].location.display_address, review: data[8].review_count},
+						{ y: 100 * (Number(data[9].review_count)) / totalReviews, label: data[9].name, rating: data[9].rating, price: data[9].price, location: data[9].location.display_address, review: data[9].review_count},
 					]
 				}]
 			}
