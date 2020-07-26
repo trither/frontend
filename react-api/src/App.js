@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './assets/canvasjs.react';
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+// requestAnimationFrame('../env').config();
 const REVIEWNUM = 10;
 
 
@@ -22,9 +23,10 @@ class PieChart extends Component {
 	componentDidMount() {
 		var myHeaders = new Headers();
 		var term = "vegan";
-		var location = "&location=portland";
+		var location = "&location=Southwest+portland";
+		var sort = "&sort_by=review_count"
 		const proxyurl = "https://cors-anywhere.herokuapp.com/";
-		myHeaders.append("Authorization", "Bearer nhxHZrgvTKnEAX_4eWO4Ab55MYSuLXqFZy6JGoWb4HVhBlfMn1LY5JXuFYpwAFlxgQ8yQnlSRczTKIUmhLZIhhSVnFPwhk6pcy94SXiD7qJ5AdW18KEHtaIm7OUFX3Yx");
+		myHeaders.append("Authorization", process.env.REACT_APP_API_KEY);
 
 		var requestOptions = {
 			method: 'GET',
@@ -37,7 +39,7 @@ class PieChart extends Component {
 		 * Found through Slack
 		 * https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
 		 */
-		fetch(proxyurl + "https://api.yelp.com/v3/businesses/search?" + term + location, requestOptions)
+		fetch(proxyurl + "https://api.yelp.com/v3/businesses/search?" + term + location + sort, requestOptions)
 			.then(response => response.json())
 			.then(json => {
 				// Puts the data into the state
