@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;;
+const REVIEWNUM = 10;
+
 
 class PieChart extends Component {
 	constructor() {
@@ -31,12 +33,8 @@ class PieChart extends Component {
 				this.setState({
 					isLoaded: true,
 					data: json.businesses.map(item => {
-						// console.log(item);
 						return item;
-						// data: json
 					})
-					// console.log(businesses);
-					// return businesses;
 				});
 			},
 				(error) => {
@@ -46,8 +44,6 @@ class PieChart extends Component {
 					});
 				}
 			)
-		// })
-		// .catch(error => console.log('error', error));
 	}
 
 	render() {
@@ -58,39 +54,52 @@ class PieChart extends Component {
 		} else if (!isLoaded) {
 			return <div>Loading...</div>;
 		} else {
+			console.log(data[0]);
+			var i;
+			var totalReviews = 0;
+			for (i = 0; i < REVIEWNUM; ++i) {
+				totalReviews += Number(data[i].review_count);
+				// console.log(totalReviews);
+			}
+			// console.log(totalReviews);
 			const options = {
-			exportEnabled: true,
-			animationEnabled: true,
-			title: {
-				text: "Yelp search"
-			},
-			data: [{
-				type: "pie",
-				startAngle: 74,
-				toolTipContent: "<b>{label}</b>: {y}%",
-				showInLegend: "true",
-				legendText: "{label}",
-				indexLabelFontSize: 15,
-				indexLabel: "{label} - {y}%",
-				dataPoints: [
-					{ y: 17, label: "Direct" },
-					{ y: 48, label: "Organic Search" },
-					{ y: 8, label: "Paid Search" },
-					{ y: 4, label: "Referral" },
-					{ y: 18, label: "Social" }
-				]
-			}]
-		}
+				exportEnabled: true,
+				animationEnabled: true,
+				title: {
+					text: "Yelp search"
+				},
+				data: [{
+					type: "pie",
+					startAngle: 74,
+					toolTipContent: "<b>{label}</b>: {y}%",
+					showInLegend: "true",
+					legendText: "{label}",
+					indexLabelFontSize: 15,
+					indexLabel: "{label} - {y}%",
+					dataPoints: [
+						{ y: 100 * (Number(data[0].review_count)) / totalReviews, label: data[0].name },
+						{ y: 100 * (Number(data[1].review_count)) / totalReviews, label: data[1].name },
+						{ y: 100 * (Number(data[2].review_count)) / totalReviews, label: data[2].name },
+						{ y: 100 * (Number(data[3].review_count)) / totalReviews, label: data[3].name },
+						{ y: 100 * (Number(data[4].review_count)) / totalReviews, label: data[4].name },
+						{ y: 100 * (Number(data[5].review_count)) / totalReviews, label: data[5].name },
+						{ y: 100 * (Number(data[6].review_count)) / totalReviews, label: data[6].name },
+						{ y: 100 * (Number(data[7].review_count)) / totalReviews, label: data[7].name },
+						{ y: 100 * (Number(data[8].review_count)) / totalReviews, label: data[8].name },
+						{ y: 100 * (Number(data[9].review_count)) / totalReviews, label: data[9].name },
+					]
+				}]
+			}
 
-		return (
-			<div>
-				<h1>React Pie Chart</h1>
-				<CanvasJSChart options={options}
-				/* onRef={ref => this.chart = ref} */
-				/>
-				{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-			</div >
-		);
+			return (
+				<div>
+					<h1>React Pie Chart</h1>
+					<CanvasJSChart options={options}
+					/* onRef={ref => this.chart = ref} */
+					/>
+					{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+				</div >
+			);
 		}
 		// const options = {
 		// 	exportEnabled: true,
