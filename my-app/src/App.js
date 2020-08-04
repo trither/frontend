@@ -106,6 +106,19 @@ class PieChart extends Component {
 				}]
 			}
 
+			function TopTenList(){
+				var parsedData = [];
+
+				var i;
+				for (i = 0; i < 10; ++i){
+					parsedData.push(data[i]);
+				}
+				console.log(parsedData);
+				return parsedData.map((item, index) =>
+				<ul key={index}>
+					{index + 1})  {item.name}
+				</ul>)
+			}
 
 			function ListRestaurants(){
 				var imageStyle = {
