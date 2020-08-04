@@ -106,16 +106,53 @@ class PieChart extends Component {
 				}]
 			}
 
+
+			function ListRestaurants(){
+				var imageStyle = {
+					height: '20%',
+					width: '20%',
+					valign: 'top'
+				}
+				var yelpImageStyle = {
+					height: '5%',
+					width:'7%'
+				}
+
+				var parsedData = [];
+
+				var i;
+				for (i = 0; i < 10; ++i){
+					parsedData.push(data[i]);
+				}
+				console.log(parsedData);
+
+				const restaurantList = parsedData.map((item, index) =>
+				<ul key={index}>
+					<div>
+						{/* <img src={item.image_url} height={200} width={200} valign={'top'}></img> */}
+						<img src={item.image_url} style={imageStyle}></img>
+					</div>
+					<div>
+					{index + 1})  {item.name} <br/>
+					{item.rating}/5 Stars {item.review} Reviews {item.price} <br/>
+					{item.location.display_address[0]} <br/>{item.location.display_address[1]}<br/>
+					<a href={item.url}><img src={'https://upload.wikimedia.org/wikipedia/commons/a/ad/Yelp_Logo.svg'} style={yelpImageStyle}></img></a>
+					</div>
+				</ul>)
+				console.log(restaurantList);
+				console.log(data[0].location.display_address);
+				return restaurantList;
+			}
+
 			return (
 				<div>
 					{/* <h1>React Pie Chart</h1> */}
+					<TopTenList/>
 					<CanvasJSChart options={options}
-					onRef={ref => this.chart = ref}
+					// onRef={ref => this.chart = ref}
 					/>
 					{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-				<ol>
-					{data[1]};
-				</ol>
+				<ListRestaurants/>
 				</div >
 			);
 		}
