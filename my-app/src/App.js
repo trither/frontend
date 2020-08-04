@@ -106,6 +106,9 @@ class PieChart extends Component {
 				}]
 			}
 
+			/**
+			 * Creates the top 10 list
+			 */
 			function TopTenList(){
 				var parsedData = [];
 
@@ -113,31 +116,37 @@ class PieChart extends Component {
 				for (i = 0; i < 10; ++i){
 					parsedData.push(data[i]);
 				}
-				console.log(parsedData);
+
 				return parsedData.map((item, index) =>
 				<ul key={index}>
 					{index + 1})  {item.name}
 				</ul>)
 			}
 
+			/**
+			 * Creates the list of restaurants
+			 */
 			function ListRestaurants(){
+				// style of the images for each restaurant
 				var imageStyle = {
 					height: '20%',
 					width: '20%',
 					valign: 'top'
 				}
+
+				// style of the yelp link image
 				var yelpImageStyle = {
 					height: '5%',
 					width:'7%'
 				}
 
+				// stores only the top 10 data items
 				var parsedData = [];
 
 				var i;
 				for (i = 0; i < 10; ++i){
 					parsedData.push(data[i]);
 				}
-				console.log(parsedData);
 
 				const restaurantList = parsedData.map((item, index) =>
 				<ul key={index}>
@@ -152,8 +161,7 @@ class PieChart extends Component {
 					<a href={item.url}><img src={'https://upload.wikimedia.org/wikipedia/commons/a/ad/Yelp_Logo.svg'} style={yelpImageStyle}></img></a>
 					</div>
 				</ul>)
-				console.log(restaurantList);
-				console.log(data[0].location.display_address);
+
 				return restaurantList;
 			}
 
