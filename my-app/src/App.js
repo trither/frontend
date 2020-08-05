@@ -120,7 +120,7 @@ class PieChart extends Component {
         exportEnabled: true,
         animationEnabled: true,
         title: {
-          text: "Yelp Top 10 Most Reviewed "
+          text: "Yelp Top 10 Most Reviewed"
         },
         data: [
           {
@@ -243,15 +243,15 @@ class PieChart extends Component {
       function ListRestaurants() {
         // style of the images for each restaurant
         var imageStyle = {
-          height: "20%",
-          width: "20%",
+          height: "90%",
+          width: "90%",
           valign: "top"
         };
 
         // style of the yelp link image
         var yelpImageStyle = {
-          height: "5%",
-          width: "7%"
+          height: "30px",
+          width: "45px"
         };
 
         // stores only the top 10 data items
@@ -263,12 +263,12 @@ class PieChart extends Component {
         }
 
         const restaurantList = parsedData.map((item, index) => (
-          <ul key={index}>
-            <div>
+          <ul key={index} className="restaurantList">
+            <div className="listPicture">
               {/* <img src={item.image_url} height={200} width={200} valign={'top'}></img> */}
               <img src={item.image_url} style={imageStyle}></img>
             </div>
-            <div>
+            <div className="listData">
               {index + 1}) {item.name} <br />
               {item.rating}/5 Stars {item.review} Reviews {item.price} <br />
               {item.location.display_address[0]} <br />
@@ -290,6 +290,7 @@ class PieChart extends Component {
       }
 
       return (
+        <body>
         <div>
           {/* <h1>React Pie Chart</h1> */}
           <div className="grid-container">
@@ -306,6 +307,7 @@ class PieChart extends Component {
           </div>
           <ListRestaurants />
         </div>
+        </body>
       );
     }
   }
