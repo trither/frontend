@@ -5,5 +5,30 @@
 }
 
 ul {
-  list-style: none;
+  font-size: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.reviewChart{
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  grid-column: span 2;
+}
+
+.topTenList {
+
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+
 }
