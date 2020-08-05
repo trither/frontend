@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import  CheckBox  from './Checkbox'
+import Charts from './charts'
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
     let fruites = this.state.fruites
     fruites.forEach(fruite => fruite.isChecked = event.target.checked) 
     this.setState({fruites: fruites})
+
   }
 
   handleCheckChieldElement = (event) => {
@@ -28,6 +30,7 @@ class App extends Component {
           fruite.isChecked =  event.target.checked
     })
     this.setState({fruites: fruites})
+
   }
 
   render() {
@@ -48,7 +51,7 @@ class App extends Component {
         <h2>
             Pick a food category
         </h2>
-        <button>
+        <button onClick>
             vegan
         </button>
         <button>
@@ -60,6 +63,7 @@ class App extends Component {
         <button>
             burger
         </button>
+        <Charts/>
       </div>
     );
   }
