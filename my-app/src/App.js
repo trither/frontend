@@ -29,7 +29,7 @@ class App extends Component {
     })
     this.setState({fruites: fruites})
   }
-
+//html below
   render() {
     return (
       <div className="App">
