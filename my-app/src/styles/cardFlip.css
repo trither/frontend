@@ -1,0 +1,11 @@
+.frontCard 
+{
+    background-color: #f5f5f5 !important;
+    display: flex center;
+    text-align: center;
+}
+
+.backCard
+{
+    background-color: #d32323 !important;
+}
