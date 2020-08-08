@@ -431,38 +431,3 @@ class PieChart extends Component {
 }
 
 export default PieChart;
-
-// import React from 'react'
-
-
-
-
-// const position = {
-// 	lat: 45.6075,
-// 	lng: -122.7236
-// }
-// const onLoad = marker => {
-// 	console.log('marker: ', marker)
-// }
-// function MyComponent() {
-// 	return (
-// 		<LoadScript
-// 			googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}
-// 		>
-// 			<GoogleMap
-// 				mapContainerStyle={containerStyle}
-// 				center={center}
-// 				zoom={10}
-// 			>
-// 				<Marker
-// 					onLoad={onLoad}
-// 					position={position}
-// 				/>
-// 				{ /* Child components, such as markers, info windows, etc. */}
-// 				<></>
-// 			</GoogleMap>
-// 		</LoadScript>
-// 	)
-// }
-
-// export default React.memo(MyComponent)
