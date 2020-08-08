@@ -116,9 +116,8 @@ class PieChart extends Component {
 			}
 			const options = {
 				height: "300",
-
-
 				width: "400",
+				backgroundColor: "#d32323",
 				exportEnabled: true,
 				animationEnabled: true,
 				title: {
