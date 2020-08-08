@@ -1,0 +1,53 @@
+.Charts {
+    margin-left: 100px;
+    margin-top: 100px;
+    text-align: left;
+    /* background-color: red; */
+  }
+  
+  ul {
+    font-size: 15px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-gap: 10px;
+    /* background-color: #2196F3; */
+    padding: 10px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .reviewChart{
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    grid-column: span 2;
+  }
+  
+  .topTenList {
+  
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    text-align: left;
+    padding: 20px 0;
+    font-size: 30px;
+  
+  }
+  
+  .listPicture {
+    /* grid-column: span 2; */
+  }
+  
+  .listData {
+    grid-column: span 2;
+  }
+  
+  .restaurantList {
+    display: grid;
+    grid-template-columns: repeat(5,1fr)
+  }
+  
+  body {
+    background-color: #d32323;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+  }
