@@ -118,7 +118,7 @@ class PieChart extends Component {
 				height: "300",
 				width: "400",
 				backgroundColor: "#d32323",
-				exportEnabled: true,
+				// exportEnabled: true,
 				animationEnabled: true,
 				title: {
 					text: "Yelp Top 10 Most Reviewed"
@@ -266,7 +266,6 @@ class PieChart extends Component {
 				const restaurantList = parsedData.map((item, index) => (
 					<ul key={index} className="restaurantList">
 						<div className="listPicture">
-							{/* <img src={item.image_url} height={200} width={200} valign={'top'}></img> */}
 							<img src={item.image_url} style={imageStyle}></img>
 						</div>
 						<div className="listData">
@@ -319,25 +318,6 @@ class PieChart extends Component {
 			const onLoad = infoBox => {
 				console.log('marker: ', infoBox)
 			}
-			// return (
-			// <LoadScript
-			// 	googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}
-			// >
-			// 	<GoogleMap
-			// 		mapContainerStyle={containerStyle}
-			// 		center={center}
-			// 		zoom={10}
-			// 	>
-			// 		<Marker
-			// 			onLoad={onLoad}
-			// 			position={position}
-			// 		/>
-			// 		{ /* Child components, such as markers, info windows, etc. */}
-			// 		<></>
-			// 	</GoogleMap>
-			// </LoadScript>
-			// )
-			// }
 
 			return (
 				<body>
