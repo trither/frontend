@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import CanvasJSReact from "./assets/canvasjs.react";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import './Charts.css';
+import './styles/Charts.css';
+// import cardFlip from './CardFlip.js'
+import CardFlip from './cardFlip.js';
 // import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -319,50 +321,12 @@ class PieChart extends Component {
 				for (i = 0; i < 10; ++i) {
 					parsedData.push(data[i]);
 				}
+				// console.log(parsedData);
 
 				const restaurantList = parsedData.map((item, index) => (
-					<Card style={{ width: '18rem' }} className="cards">
-						<Card.Img variant="top" src={item.image_url} style={imageStyle} alt="Default food pic" />
-						<Card.Body>
-							<Card.Title>{index + 1}) {item.name}</Card.Title>
-							<Card.Text>
-								{item.rating}/5 Stars {item.review} Reviews {item.price} <br />
-								{item.location.display_address[0]} <br />
-								{item.location.display_address[1]}
-								<br />
-							</Card.Text>
-							<a href={item.url}>
-								<img
-									src={
-										"https://upload.wikimedia.org/wikipedia/commons/a/ad/Yelp_Logo.svg"
-									}
-									style={yelpImageStyle} alt="Yelp logo"
-								></img>
-							</a>
-						</Card.Body>
-					</Card>
-					/* <ul key={index} className="restaurantList"> 
-					   <div className="listPicture">
-						   <img src={item.image_url} style={imageStyle} alt="Default food pic"></img>
-					   </div>
-					   <div className="listData">
-						   {index + 1}) {item.name} <br />
-						   {item.rating}/5 Stars {item.review} Reviews {item.price} <br />
-						   {item.location.display_address[0]} <br />
-						   {item.location.display_address[1]}
-						   <br />
-						   <a href={item.url}>
-							   <img
-								   src={
-									   "https://upload.wikimedia.org/wikipedia/commons/a/ad/Yelp_Logo.svg"
-								   }
-								   style={yelpImageStyle} alt="Yelp logo"
-							   ></img>
-						   </a>
-					   </div>
-				   </ul> */
+					<CardFlip item={item} index={index} imageStyle={imageStyle} yelpImageStyle={yelpImageStyle}/>
 				));
-
+					
 				return restaurantList;
 			}
 			// function theMap() {
@@ -456,6 +420,7 @@ class PieChart extends Component {
 						</div>
 						<div className="restaurantList">
 							<ListRestaurants />
+							{/* <Example /> */}
 						</div>
 					</div>
 				</body>

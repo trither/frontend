@@ -21,5 +21,11 @@ npm start
 
 Resources used:
 https://pusher.com/tutorials/consume-restful-api-react
+
 https://create-react-app.dev/docs/getting-started
+
 https://www.npmjs.com/package/@react-google-maps/api
+
+https://stackoverflow.com/questions/51421714/how-to-add-marker-onclick-and-show-my-geolocation-in-google-maps-react
+
+https://github.com/AaronCCWong/react-card-flip
