@@ -71,7 +71,7 @@ class PieChart extends Component {
 		// 	  }
 		// 	);
 		fetch(
-			// proxyurl +
+			proxyurl +
 			"https://api.yelp.com/v3/businesses/search?" +
 			term +
 			nLocation +
