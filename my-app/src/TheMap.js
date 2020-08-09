@@ -3,13 +3,18 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import "./styles/Charts.css";
 
 class TheMap extends Component {
+    /**
+     * Construct that catches props and sets data
+     */
   constructor(props) {
     super(props);
+    // setting the state equal to the props data passed in and into
+    // the correct format for the marker
     this.state = {
-        center: {
-            lat: this.props.center.lat,
-            lng: this.props.center.lng
-        },
+      center: {
+        lat: this.props.center.lat,
+        lng: this.props.center.lng
+      },
       markers: [
         {
           title:
@@ -154,32 +159,35 @@ class TheMap extends Component {
       ]
     };
   }
-
+/**
+ * create the map and return it to the parent component
+ */
   render() {
+    // size of the container
     const containerStyle = {
       width: "400px",
       height: "400px"
     };
 
-    console.log(this.state.center);
     return (
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}>
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={this.state.center}
-              zoom={10}
-            >
-              {this.state.markers.map((marker, index) => (
-                <Marker
-                  key={index}
-                  title={marker.title}
-                  name={marker.name}
-                  position={marker.position}
-                />
-              ))}
-              <></>
-            </GoogleMap>
-          </LoadScript>
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={this.state.center}
+          zoom={10}
+        >
+          {/* Iterator to go through all the points and mark them on the map */}
+          {this.state.markers.map((marker, index) => (
+            <Marker
+              key={index}
+              title={marker.title}
+              name={marker.name}
+              position={marker.position}
+            />
+          ))}
+          <></>
+        </GoogleMap>
+      </LoadScript>
     );
   }
 }

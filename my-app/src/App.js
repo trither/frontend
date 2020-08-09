@@ -15,19 +15,45 @@ class PieChart extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-	  data: [],
-	  center: []
+      data: [],
+	  center: [],
+	  area: "empty",
+	  type: "empty"
     };
   }
   /**
    * Fetches the data from the yelp fusion API
    */
   componentDidMount() {
-    var myHeaders = new Headers();
-    var term = "vegan";
-	var nLocation = "&latitude=45.6075&longitude=-122.7236";
-	var longitude = "-122.7236";
-	var latitude = "45.6075";
+	var myHeaders = new Headers();
+	var area;
+	// var latitude;
+	// var longitude;
+	// if (this.props.location=="&latitude=43.6415&longitude=-70.2409"){
+	// 	area = "South Portland";
+	// 	latitude=43.6415;
+	// 	longitude=-70.2409;
+	// }
+	// else if(this.props.location=="&latitude=45.4475&longitude=-122.7221"){
+	// 	area = "West Portland";
+	// 	latitude=45.4475;
+	// 	longitude=-122.7221;
+	// }
+	// else if(this.props.location== "&latitude=45.5154&longitude=-122.6604"){
+	// 	area = "East Portland";
+	// 	latitude=45.5154;
+	// 	longitude=-122.6604;
+	// }
+	// else{
+	// 	area = "North Portland"
+	// 	latitude=456075;
+	// 	longitude=-122.7236;
+	// }
+	area = "North Portland";
+    var type = "vegan";
+    var nLocation = "&latitude=45.6075&longitude=-122.7236";
+    var longitude = "-122.7236";
+    var latitude = "45.6075";
     var nRadius = "3000";
     var sort = "&sort_by=review_count";
     // var sort ="";
@@ -72,7 +98,7 @@ class PieChart extends Component {
     fetch(
       proxyurl +
         "https://api.yelp.com/v3/businesses/search?" +
-        term +
+        type +
         nLocation +
         nRadius +
         sort,
@@ -86,12 +112,14 @@ class PieChart extends Component {
             isLoaded: true,
             // Maps just the important data and enters it into the state data
             data: json.businesses.map(item => {
-			  return item;
-			}),
-			center: {
-				lat: parseFloat(latitude),
-				lng: parseFloat(longitude)
-			}
+              return item;
+            }),
+            center: {
+              lat: parseFloat(latitude),
+              lng: parseFloat(longitude)
+			},
+			area: area,
+			type: type
             // }),
             // markers: [
           });
@@ -104,7 +132,10 @@ class PieChart extends Component {
         }
       );
   }
-
+/**
+ * Renders the components: chart, top 10 list
+ * Calls the functions to create the details and the map
+ */
   render() {
     const { error, isLoaded, data } = this.state;
     // Will continue to load until the data has finally been fully aquired
@@ -113,9 +144,7 @@ class PieChart extends Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      // data["searchLocation"] = "North Portland";
-      // data.searchLocation("North Portland");
-      // console.log(data);
+		console.log(this.state.area);
       var i;
       var totalReviews = 0;
       // Calculate the total reviews
@@ -283,20 +312,13 @@ class PieChart extends Component {
 
         return restaurantList;
       }
-      // function theMap() {
-      const containerStyle = {
-        width: "400px",
-        height: "400px"
-      };
 
-      const center = {
-        lat: 45.6075,
-        lng: -122.7236
-      };
-      
       return (
         <body>
           <div>
+		  	<div className="title">
+		  		{this.state.type} Food in {this.state.area}
+			</div>
             {/* <h1>React Pie Chart</h1> */}
             <div className="grid-container">
               <div className="topTenList">
@@ -310,7 +332,7 @@ class PieChart extends Component {
                 {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
               </div>
               <div className="map">
-                <TheMap data={data} center={this.state.center}/>
+                <TheMap data={data} center={this.state.center} />
               </div>
             </div>
             <div className="restaurantList">
