@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './styles/App.css'
 import  CheckBox  from './Checkbox'
-import Charts from './charts'
+import Charts from './Charts'
 
 class App extends Component {
   constructor(props) {
