@@ -4,10 +4,13 @@ import './styles/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
+import { LoadScript } from "@react-google-maps/api";
 
 ReactDOM.render(
   <React.StrictMode>
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}>
     <App />
+    </LoadScript>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -170,7 +170,6 @@ class TheMap extends Component {
     };
 
     return (
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}>
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={this.state.center}
@@ -187,7 +186,6 @@ class TheMap extends Component {
           ))}
           <></>
         </GoogleMap>
-      </LoadScript>
     );
   }
 }
