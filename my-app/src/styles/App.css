@@ -4,6 +4,53 @@
   text-align: left;
 }
 
-ul {
-  list-style: none;
+ul :hover{
+  list-style-type:none;
+  width: 12%;
+  margin: 8px 0;
+  padding:5px 15px; 
+  border: 2px solid black;
+  border-radius: 4px;
+  background:#ccc; 
+  background-color:lightslategrey;
+  color: #f15c00;
+  cursor:pointer;
+  border-radius: 5px; 
+}
+
+h1 {
+  text-align: center;
+
+}
+
+h2{
+  text-align: center;
+
+}
+
+h3{
+
+
+}
+
+div{
+
+}
+
+input[type=submit]{
+  width: 20%;
+  margin: 8px 0;
+  padding:5px 15px; 
+  border: 2px solid black;
+  border-radius: 4px;
+  background:#ccc; 
+  background-color:lightslategrey;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+
+}
+
+body{
+
 }

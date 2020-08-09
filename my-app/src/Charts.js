@@ -53,7 +53,8 @@ class PieChart extends Component {
       latitude = 45.6075;
       longitude = -122.7236;
     }
-    var type = this.props.foodCategory;
+    //var type = this.props.foodCategory;
+    var type = "term=" + this.props.foodCategory;
     var radius = "&radius=5000";
     // var sort = "&sort_by=review_count";
     // Proxy URL to get around the CORS preflight issue
@@ -96,7 +97,8 @@ class PieChart extends Component {
               lng: longitude
             },
             area: area,
-            type: type
+            //type: type
+            type: this.props.foodCategory
           });
         },
         error => {

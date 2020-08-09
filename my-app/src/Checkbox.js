@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import "./styles/CheckBox.css";
 /*
 export const CheckBox = props => {
     return (
@@ -11,7 +12,7 @@ export const CheckBox = props => {
 export default CheckBox
 
 */
-export const CheckBox = props => {
+export const CheckBox = (props) => {
   return (
     <li>
       <input
