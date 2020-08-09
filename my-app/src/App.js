@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import CanvasJSReact from "./assets/canvasjs.react";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import './styles/Charts.css';
-// import cardFlip from './CardFlip.js'
 import CardFlip from './cardFlip.js';
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const REVIEWNUM = 10;
 
@@ -164,9 +158,9 @@ class PieChart extends Component {
 		} else if (!isLoaded) {
 			return <div>Loading...</div>;
 		} else {
-			data["searchLocation"] = "North Portland";
+			// data["searchLocation"] = "North Portland";
 			// data.searchLocation("North Portland");
-			console.log(data);
+			// console.log(data);
 			var i;
 			var totalReviews = 0;
 			// Calculate the total reviews
@@ -176,8 +170,8 @@ class PieChart extends Component {
 			const options = {
 				height: "300",
 				width: "400",
-				backgroundColor: "#d32323",
-				// exportEnabled: true,
+				// backgroundColor: "#d32323",
+				backgroundColor: null,
 				animationEnabled: true,
 				title: {
 					text: "Yelp Top 10 Most Reviewed"
