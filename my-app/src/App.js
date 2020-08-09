@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CanvasJSReact from "./assets/canvasjs.react";
-// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import "./styles/Charts.css";
 import CardFlip from "./cardFlip.js";
 import TheMap from "./TheMap";
@@ -16,7 +15,8 @@ class PieChart extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      data: []
+	  data: [],
+	  center: []
     };
   }
   /**
@@ -25,9 +25,9 @@ class PieChart extends Component {
   componentDidMount() {
     var myHeaders = new Headers();
     var term = "vegan";
-    // var Nlocation = "&location=North+portland";
-    // var Slocation = "&location=South+portland";
-    var nLocation = "&latitude=45.6075&longitude=-122.7236";
+	var nLocation = "&latitude=45.6075&longitude=-122.7236";
+	var longitude = "-122.7236";
+	var latitude = "45.6075";
     var nRadius = "3000";
     var sort = "&sort_by=review_count";
     // var sort ="";
@@ -86,8 +86,12 @@ class PieChart extends Component {
             isLoaded: true,
             // Maps just the important data and enters it into the state data
             data: json.businesses.map(item => {
-              return item;
-            })
+			  return item;
+			}),
+			center: {
+				lat: parseFloat(latitude),
+				lng: parseFloat(longitude)
+			}
             // }),
             // markers: [
           });
@@ -289,45 +293,7 @@ class PieChart extends Component {
         lat: 45.6075,
         lng: -122.7236
       };
-      // const position = {
-      // 	lat: data[0].coordinates.latitude,
-      // 	lng: data[0].coordinates.longitude
-      // }
-      // const positions = []
-      // for (i = 0; i < 10; ++i) {
-      // 	const position = {
-      // 		lat: data[i].coordinates.latitude,
-      // 		lng: data[i].coordinates.longitude
-      // 	}
-      // 	positions.push(position);
-      // }
-      // console.log(positions);
-      // const opts = { closeBoxURL: '', enableEventPropagation: true };
-      // const mapLabel = {
-      // 	label: data[0].name
-      // };
-      // const onLoad = infoBox => {
-      // 	console.log('marker: ', infoBox)
-      // }
-
-      // function mapOnClick(t, map, coord) {
-      // 	const { latLng } = coord;
-      // 	const lat = latLng.lat();
-      // 	const lng = latLng.lng();
-
-      // 	this.setState(previousState => {
-      // 		return {
-      // 			markers: [
-      // 				...previousState.markers,
-      // 				{
-      // 					title: "",
-      // 					name: "",
-      // 					position: { lat, lng }
-      // 				}
-      // 			]
-      // 		};
-      // 	});
-      // }
+      
       return (
         <body>
           <div>
@@ -344,7 +310,7 @@ class PieChart extends Component {
                 {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
               </div>
               <div className="map">
-                <TheMap data={data} />
+                <TheMap data={data} center={this.state.center}/>
               </div>
             </div>
             <div className="restaurantList">

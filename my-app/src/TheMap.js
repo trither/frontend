@@ -6,6 +6,10 @@ class TheMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        center: {
+            lat: this.props.center.lat,
+            lng: this.props.center.lng
+        },
       markers: [
         {
           title:
@@ -157,16 +161,12 @@ class TheMap extends Component {
       height: "400px"
     };
 
-    const center = {
-      lat: 45.6075,
-      lng: -122.7236
-    };
-
+    console.log(this.state.center);
     return (
         <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLEAPIKEY}>
             <GoogleMap
               mapContainerStyle={containerStyle}
-              center={center}
+              center={this.state.center}
               zoom={10}
             >
               {this.state.markers.map((marker, index) => (
