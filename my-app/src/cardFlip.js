@@ -20,9 +20,11 @@ class CardFlip extends Component{
   render() {
     return (
       <ReactCardFlip isFlipped={this.state.isFlipped}>
+       {/* initial state (side with no info but the name) */}
         <div className="frontCard" onClick={this.handleClick}>
         {this.props.item.name}
         </div>
+        {/* State after the name of the restaurant has been clicked */}
         <div className="backCard">
         <Card style={{ width: '18rem' }} className="cards">
 						<Card.Img variant="top" src={this.props.item.image_url} style={this.props.imageStyle} alt="Default food pic" onClick={this.handleClick}/>

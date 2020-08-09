@@ -16,51 +16,50 @@ class PieChart extends Component {
       error: null,
       isLoaded: false,
       data: [],
-	  center: [],
-	  area: "empty",
-	  type: "empty"
+      center: [],
+      area: "empty",
+      type: "empty"
     };
   }
   /**
    * Fetches the data from the yelp fusion API
    */
   componentDidMount() {
-  console.log("Food category: " + this.props.foodCategory)
-  console.log("Location: " + this.props.location)
-	var myHeaders = new Headers();
-	var area;
-	var latitude;
-	var longitude;
-	if (this.props.location==="&latitude=43.6415&longitude=-70.2409"){
-		area = "South Portland";
-		latitude=43.6415;
-		longitude=-70.2409;
-	}
-	else if(this.props.location==="&latitude=45.4475&longitude=-122.7221"){
-		area = "West Portland";
-		latitude=45.4475;
-		longitude=-122.7221;
-	}
-	else if(this.props.location=== "&latitude=45.5154&longitude=-122.6604"){
-		area = "East Portland";
-		latitude=45.5154;
-		longitude=-122.6604;
-	}
-	else{
-		area = "North Portland"
-		latitude=45.6075;
-		longitude=-122.7236;
-	}
-	// area = "North Portland";
-    // var type = "vegan";
+    // console.log("Food category: " + this.props.foodCategory)
+    // console.log("Location: " + this.props.location)
+    var myHeaders = new Headers();
+    var area;
+    var latitude;
+    var longitude;
+    // Sets the proper lat/lng/area based on the props passed in
+    if (this.props.location === "&latitude=43.6415&longitude=-70.2409") {
+      area = "South Portland";
+      latitude = 43.6415;
+      longitude = -70.2409;
+    } else if (
+      this.props.location === "&latitude=45.4475&longitude=-122.7221"
+    ) {
+      area = "West Portland";
+      latitude = 45.4475;
+      longitude = -122.7221;
+    } else if (
+      this.props.location === "&latitude=45.5154&longitude=-122.6604"
+    ) {
+      area = "East Portland";
+      latitude = 45.5154;
+      longitude = -122.6604;
+    } else {
+      area = "North Portland";
+      latitude = 45.6075;
+      longitude = -122.7236;
+    }
     var type = this.props.foodCategory;
-    // var nLocation = "&latitude=45.6075&longitude=-122.7236";
-    // var longitude = "-122.7236";
-    // var latitude = "45.6075";
     var radius = "&radius=5000";
     // var sort = "&sort_by=review_count";
-    // var sort ="";
+    // Proxy URL to get around the CORS preflight issue
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+    // Create the header for the API call
     myHeaders.append("Authorization", process.env.REACT_APP_APIKEY);
 
     var requestOptions = {
@@ -69,14 +68,17 @@ class PieChart extends Component {
       redirect: "follow"
     };
 
+    // fetches the data and will only return the proper data after it has
+    // succeeded. isLoaded and error work in conjunction with render()
+    // to ensure that the API call went through
     fetch(
       proxyurl +
         "https://api.yelp.com/v3/businesses/search?" +
         type +
         this.props.location +
         radius,
-        // radius +
-        // sort,
+      // radius +
+      // sort,
       requestOptions
     )
       .then(response => response.json())
@@ -92,11 +94,9 @@ class PieChart extends Component {
             center: {
               lat: latitude,
               lng: longitude
-			},
-			area: area,
-			type: type
-            // }),
-            // markers: [
+            },
+            area: area,
+            type: type
           });
         },
         error => {
@@ -107,10 +107,10 @@ class PieChart extends Component {
         }
       );
   }
-/**
- * Renders the components: chart, top 10 list
- * Calls the functions to create the details and the map
- */
+  /**
+   * Renders the components: chart, top 10 list
+   * Calls the functions to create the details and the map
+   */
   render() {
     const { error, isLoaded, data } = this.state;
     // Will continue to load until the data has finally been fully aquired
@@ -119,13 +119,14 @@ class PieChart extends Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-		console.log(this.state.area);
       var i;
       var totalReviews = 0;
       // Calculate the total reviews
       for (i = 0; i < REVIEWNUM; ++i) {
         totalReviews += Number(data[i].review_count);
       }
+
+      // creating the chart
       const options = {
         height: "300",
         width: "400",
@@ -142,7 +143,6 @@ class PieChart extends Component {
             percentFormatString: "#0.##",
             toolTipContent:
               "<b>{label}</b>: #percent%  <br/> {location} <br/> {rating}/5 Stars {review} Reviews {price}",
-            // showInLegend: "true",
             legendText: "{label}",
             indexLabelFontSize: 15,
             indexLabel: "{label} - #percent%",
@@ -242,7 +242,7 @@ class PieChart extends Component {
         for (i = 0; i < 10; ++i) {
           parsedData.push(data[i]);
         }
-
+        // loops through the data and will output the number and
         return parsedData.map((item, index) => (
           <ul key={index}>
             {index + 1}) {item.name}
@@ -274,8 +274,8 @@ class PieChart extends Component {
         for (i = 0; i < 10; ++i) {
           parsedData.push(data[i]);
         }
-        // console.log(parsedData);
-
+        // iterates through parsedData and will create a CardFlip
+        // item then return it to the calling function
         const restaurantList = parsedData.map((item, index) => (
           <CardFlip
             item={item}
@@ -291,9 +291,11 @@ class PieChart extends Component {
       return (
         <body>
           <div>
-		  	<div className="title">
-		  		{this.state.type} Food in {this.state.area}
-			</div>
+            {/* <div className="title"> */}
+            <h1>
+              {this.state.type} in {this.state.area}
+            </h1>
+            {/* </div> */}
             {/* <h1>React Pie Chart</h1> */}
             <div className="grid-container">
               <div className="topTenList">

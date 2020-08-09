@@ -3,9 +3,9 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import "./styles/Charts.css";
 
 class TheMap extends Component {
-    /**
-     * Construct that catches props and sets data
-     */
+  /**
+   * Construct that catches props and sets data
+   */
   constructor(props) {
     super(props);
     // setting the state equal to the props data passed in and into
@@ -159,9 +159,9 @@ class TheMap extends Component {
       ]
     };
   }
-/**
- * create the map and return it to the parent component
- */
+  /**
+   * create the map and return it to the parent component
+   */
   render() {
     // size of the container
     const containerStyle = {
@@ -170,22 +170,22 @@ class TheMap extends Component {
     };
 
     return (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={this.state.center}
-          zoom={10}
-        >
-          {/* Iterator to go through all the points and mark them on the map */}
-          {this.state.markers.map((marker, index) => (
-            <Marker
-              key={index}
-              title={marker.title}
-              name={marker.name}
-              position={marker.position}
-            />
-          ))}
-          <></>
-        </GoogleMap>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={this.state.center}
+        zoom={12}
+      >
+        {/* Iterator to go through all the points and mark them on the map */}
+        {this.state.markers.map((marker, index) => (
+          <Marker
+            key={index}
+            title={marker.title}
+            name={marker.name}
+            position={marker.position}
+          />
+        ))}
+        <></>
+      </GoogleMap>
     );
   }
 }
