@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import CanvasJSReact from "./assets/canvasjs.react";
-import { GoogleMap, LoadScript, Marker, InfoBox } from '@react-google-maps/api';
-import './Charts.css';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import './styles/Charts.css';
+import CardFlip from './cardFlip.js';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const REVIEWNUM = 10;
 
@@ -85,7 +86,59 @@ class PieChart extends Component {
 						// Maps just the important data and enters it into the state data
 						data: json.businesses.map(item => {
 							return item;
-						})
+						}),
+						markers: [
+							{
+								title: "1) " + json.businesses[0].name + "\n" + json.businesses[0].location.display_address[0] + "\n" + json.businesses[0].location.display_address[1],
+								name: json.businesses[0].name,
+								position: { lat: json.businesses[0].coordinates.latitude, lng: json.businesses[0].coordinates.longitude }
+							},
+							{
+								title: "2) " + json.businesses[1].name + "\n" + json.businesses[1].location.display_address[0] + "\n" + json.businesses[1].location.display_address[1],
+								name: json.businesses[1].name,
+								position: { lat: json.businesses[1].coordinates.latitude, lng: json.businesses[1].coordinates.longitude }
+							},
+							{
+								title: "3) " + json.businesses[2].name + "\n" + json.businesses[2].location.display_address[0] + "\n" + json.businesses[2].location.display_address[1],
+								name: json.businesses[2].name,
+								position: { lat: json.businesses[2].coordinates.latitude, lng: json.businesses[2].coordinates.longitude }
+							},
+							{
+								title: "4) " + json.businesses[3].name + "\n" + json.businesses[3].location.display_address[0] + "\n" + json.businesses[3].location.display_address[1],
+								name: json.businesses[3].name,
+								position: { lat: json.businesses[3].coordinates.latitude, lng: json.businesses[3].coordinates.longitude }
+							},
+							{
+								title: "5) " + json.businesses[4].name + "\n" + json.businesses[4].location.display_address[0] + "\n" + json.businesses[4].location.display_address[1],
+								name: json.businesses[4].name,
+								position: { lat: json.businesses[4].coordinates.latitude, lng: json.businesses[4].coordinates.longitude }
+							},
+							{
+								title: "6) " + json.businesses[5].name + "\n" + json.businesses[5].location.display_address[0] + "\n" + json.businesses[5].location.display_address[1],
+								name: json.businesses[5].name,
+								position: { lat: json.businesses[5].coordinates.latitude, lng: json.businesses[5].coordinates.longitude }
+							},
+							{
+								title: "7) " + json.businesses[6].name + "\n" + json.businesses[6].location.display_address[0] + "\n" + json.businesses[6].location.display_address[1],
+								name: json.businesses[6].name,
+								position: { lat: json.businesses[6].coordinates.latitude, lng: json.businesses[6].coordinates.longitude }
+							},
+							{
+								title: "8) " + json.businesses[7].name + "\n" + json.businesses[7].location.display_address[0] + "\n" + json.businesses[7].location.display_address[1],
+								name: json.businesses[7].name,
+								position: { lat: json.businesses[7].coordinates.latitude, lng: json.businesses[7].coordinates.longitude }
+							},
+							{
+								title: "9) " + json.businesses[8].name + "\n" + json.businesses[8].location.display_address[0] + "\n" + json.businesses[8].location.display_address[1],
+								name: json.businesses[8].name,
+								position: { lat: json.businesses[8].coordinates.latitude, lng: json.businesses[8].coordinates.longitude }
+							},
+							{
+								title: "10) " + json.businesses[9].name + "\n" + json.businesses[9].location.display_address[0] + "\n" + json.businesses[9].location.display_address[1],
+								name: json.businesses[9].name,
+								position: { lat: json.businesses[9].coordinates.latitude, lng: json.businesses[9].coordinates.longitude }
+							}
+						]
 					});
 				},
 				error => {
@@ -105,9 +158,9 @@ class PieChart extends Component {
 		} else if (!isLoaded) {
 			return <div>Loading...</div>;
 		} else {
-			data["searchLocation"] = "North Portland";
+			// data["searchLocation"] = "North Portland";
 			// data.searchLocation("North Portland");
-			console.log(data);
+			// console.log(data);
 			var i;
 			var totalReviews = 0;
 			// Calculate the total reviews
@@ -117,8 +170,8 @@ class PieChart extends Component {
 			const options = {
 				height: "300",
 				width: "400",
-				backgroundColor: "#d32323",
-				// exportEnabled: true,
+				// backgroundColor: "#d32323",
+				backgroundColor: null,
 				animationEnabled: true,
 				title: {
 					text: "Yelp Top 10 Most Reviewed"
@@ -244,8 +297,8 @@ class PieChart extends Component {
 			function ListRestaurants() {
 				// style of the images for each restaurant
 				var imageStyle = {
-					height: "90%",
-					width: "90%",
+					// height: "100%",
+					// width: "100%",
 					valign: "top"
 				};
 
@@ -262,30 +315,12 @@ class PieChart extends Component {
 				for (i = 0; i < 10; ++i) {
 					parsedData.push(data[i]);
 				}
+				// console.log(parsedData);
 
 				const restaurantList = parsedData.map((item, index) => (
-					<ul key={index} className="restaurantList">
-						<div className="listPicture">
-							<img src={item.image_url} style={imageStyle}></img>
-						</div>
-						<div className="listData">
-							{index + 1}) {item.name} <br />
-							{item.rating}/5 Stars {item.review} Reviews {item.price} <br />
-							{item.location.display_address[0]} <br />
-							{item.location.display_address[1]}
-							<br />
-							<a href={item.url}>
-								<img
-									src={
-										"https://upload.wikimedia.org/wikipedia/commons/a/ad/Yelp_Logo.svg"
-									}
-									style={yelpImageStyle}
-								></img>
-							</a>
-						</div>
-					</ul>
+					<CardFlip item={item} index={index} imageStyle={imageStyle} yelpImageStyle={yelpImageStyle}/>
 				));
-
+					
 				return restaurantList;
 			}
 			// function theMap() {
@@ -298,12 +333,12 @@ class PieChart extends Component {
 				lat: 45.6075,
 				lng: -122.7236
 			};
-			const position = {
-				lat: data[0].coordinates.latitude,
-				lng: data[0].coordinates.longitude
-			}
+			// const position = {
+			// 	lat: data[0].coordinates.latitude,
+			// 	lng: data[0].coordinates.longitude
+			// }
 			const positions = []
-			for (i = 0; i<10; ++i){
+			for (i = 0; i < 10; ++i) {
 				const position = {
 					lat: data[i].coordinates.latitude,
 					lng: data[i].coordinates.longitude
@@ -312,13 +347,31 @@ class PieChart extends Component {
 			}
 			console.log(positions);
 			// const opts = { closeBoxURL: '', enableEventPropagation: true };
-			const mapLabel = {
-				label: data[0].name
-			};
-			const onLoad = infoBox => {
-				console.log('marker: ', infoBox)
-			}
+			// const mapLabel = {
+			// 	label: data[0].name
+			// };
+			// const onLoad = infoBox => {
+			// 	console.log('marker: ', infoBox)
+			// }
 
+			// function mapOnClick(t, map, coord) {
+			// 	const { latLng } = coord;
+			// 	const lat = latLng.lat();
+			// 	const lng = latLng.lng();
+
+			// 	this.setState(previousState => {
+			// 		return {
+			// 			markers: [
+			// 				...previousState.markers,
+			// 				{
+			// 					title: "",
+			// 					name: "",
+			// 					position: { lat, lng }
+			// 				}
+			// 			]
+			// 		};
+			// 	});
+			// }
 			return (
 				<body>
 					<div>
@@ -342,65 +395,27 @@ class PieChart extends Component {
 										mapContainerStyle={containerStyle}
 										center={center}
 										zoom={10}
+									// onClick={this.onClick}
 									>
-										<Marker
-											onLoad={onLoad}
-											position={positions[0]}
-											label={data[0].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[1]}
-											label={data[1].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[2]}
-											label={data[2].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[3]}
-											label={data[3].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[4]}
-											label={data[4].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[5]}
-											label={data[5].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[6]}
-											label={data[6].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[7]}
-											label={data[7].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[8]}
-											label={data[8].name}
-										/>
-										<Marker
-											onLoad={onLoad}
-											position={positions[9]}
-											label={data[9].name}
-										/>
-									
+										{this.state.markers.map((marker, index) => (
+											<Marker
+												key={index}
+												title={marker.title}
+												name={marker.name}
+												position={marker.position}
+											/>
+										))}
+
 										{ /* Child components, such as markers, info windows, etc. */}
 										<></>
 									</GoogleMap>
 								</LoadScript>
 							</div>
 						</div>
-						<ListRestaurants />
+						<div className="restaurantList">
+							<ListRestaurants />
+							{/* <Example /> */}
+						</div>
 					</div>
 				</body>
 			);

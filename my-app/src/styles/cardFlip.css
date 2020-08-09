@@ -1,0 +1,15 @@
+.frontCard 
+{
+    border: solid 1px;
+    border-color: black !important;
+    background-color: none;
+    /* background-color: #f5f5f5 !important; */
+    display: flex center;
+    text-align: center;
+}
+
+.backCard
+{
+    background-color: rgba(0,0,0,0.5) !important;
+    /* background-color: #d32323 !important; */
+}

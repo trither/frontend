@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './styles/App.css'
 import  CheckBox  from './Checkbox'
 
 class App extends Component {
