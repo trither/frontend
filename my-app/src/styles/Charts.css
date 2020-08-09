@@ -1,0 +1,69 @@
+.App {
+  margin-left: 100px;
+  margin-top: 100px;
+  text-align: left;
+  /* background-color: #d32323; */
+}
+
+ul {
+  font-size: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.reviewChart {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  grid-column: span 2;
+}
+
+.topTenList {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  text-align: left;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.listPicture {
+  /* grid-column: span 2; */
+}
+
+.listData {
+  grid-column: span 2;
+}
+
+.restaurantList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5px;
+  margin: 5px;
+  grid-gap: 2px;
+}
+
+body {
+  /* background-image: linear-gradient(
+            to right top,
+            #845ec2,
+            #0089ba,
+            #008e9b,
+            #008f7a
+    ) !important; */
+    /* height: 100vh; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+  background-color: #d32323 !important;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  /* background-color: #42378f; */
+/* background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%); */
+
+}
+
+
