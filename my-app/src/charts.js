@@ -8,13 +8,14 @@ class PieChart extends Component {
 	/**
 	 * Constructor that creates the state that will hold the fetch data
 	 */
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			error: null,
 			isLoaded: false,
 			data: []
 		}
+		console.log("checking"+this.props.values[0].id)
 	}
 /**
  * Fetches the data from the yelp fusion API
