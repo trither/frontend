@@ -1,0 +1,29 @@
+li{
+    width: 10%;
+    margin: 8px 0;
+    padding:5px 15px; 
+    border: 2px solid black;
+    border-radius: 4px;
+    background:#ccc; 
+    background-color:lightslategrey;
+    color: #d32323;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+
+}
+
+input[type=submit]:hover{
+    width: 10%;
+    margin: 8px 0;
+    padding:5px 15px; 
+    border: 2px solid black;
+    border-radius: 4px;
+    background:#ccc; 
+    background-color:lightslategrey;
+    color: #0073bb;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+  
+  }
