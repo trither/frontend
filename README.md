@@ -23,10 +23,14 @@ To run development build:
 npm start 
 ```
 
-Resources used:
+Helpful Resources Used/Referenced:
 https://pusher.com/tutorials/consume-restful-api-react
 
 https://create-react-app.dev/docs/getting-started
+
+https://www.yelp.com/styleguide
+
+https://medium.com/@tariqul.islam.rony/multiple-checkbox-handling-by-react-js-84b1d49a46c6
 
 https://www.npmjs.com/package/@react-google-maps/api
 
