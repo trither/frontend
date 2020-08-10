@@ -6,10 +6,12 @@
     /* background-color: #f5f5f5 !important; */
     display: flex center;
     text-align: center;
+    cursor: pointer;
 }
 
 .backCard
 {
     background-color: rgba(0,0,0,0.5) !important;
+    cursor: pointer;
     /* background-color: #d32323 !important; */
 }

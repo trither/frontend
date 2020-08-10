@@ -56,7 +56,7 @@ class PieChart extends Component {
     //var type = this.props.foodCategory;
     var type = "term=" + this.props.foodCategory;
     var radius = "&radius=5000";
-    // var sort = "&sort_by=review_count";
+    var sort = "&sort_by=review_count";
     // Proxy URL to get around the CORS preflight issue
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
@@ -77,9 +77,8 @@ class PieChart extends Component {
         "https://api.yelp.com/v3/businesses/search?" +
         type +
         this.props.location +
-        radius,
-      // radius +
-      // sort,
+        radius +
+        sort,
       requestOptions
     )
       .then((response) => response.json())
@@ -301,6 +300,7 @@ class PieChart extends Component {
             {/* <h1>React Pie Chart</h1> */}
             <div className="grid-container">
               <div className="topTenList">
+                <h4>Top 10 List</h4>
                 <TopTenList />
               </div>
               <div className="reviewChart">
@@ -314,6 +314,7 @@ class PieChart extends Component {
                 <TheMap data={data} center={this.state.center} />
               </div>
             </div>
+            <h4>Click on the restaurants below to learn more</h4>
             <div className="restaurantList">
               <ListRestaurants />
               {/* <Example /> */}
