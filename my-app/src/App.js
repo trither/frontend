@@ -147,8 +147,13 @@ class App extends Component {
     return (
       <body>
         <div className="App">
-          <h1> Homescreen description and welcome message goes here! </h1>
-          <h2> Choose food categories for restaurant info </h2>
+          <h1>
+            {" "}
+            Welcome! We're here to help you get your grub on! Please follow the
+            directions below to find the top 10 restaurants in the specified
+            area of Portland at your choosing.
+          </h1>
+          <h2> Choose a food category from the options below.</h2>
           {[{ id: 1, name: "Reset" }].map((item) => (
             <div>
               <input
@@ -180,7 +185,7 @@ class App extends Component {
             <div>
               <h3>
                 {" "}
-                Choose locations of the portland area for restaurant info{" "}
+                Choose a location from the list below of the Portland area.{" "}
               </h3>
               <input
                 type="submit"
