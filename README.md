@@ -2,6 +2,10 @@
 
 Final Project
 
+## Project Description:
+A dashboard application that displays the top 10 restaurants in the Portland area by food category and location options. The dashboard also displays a map of the locations of each restaurant in the top 10 list. The results are filtered by review count.
+
+
 Change into the project directory:
 ```
 CD yelp-dashboard-project
