@@ -18,7 +18,7 @@ class PieChart extends Component {
       data: [],
       center: [],
       area: "empty",
-      type: "empty"
+      type: "empty",
     };
   }
   /**
@@ -66,7 +66,7 @@ class PieChart extends Component {
     var requestOptions = {
       method: "GET",
       headers: myHeaders,
-      redirect: "follow"
+      redirect: "follow",
     };
 
     // fetches the data and will only return the proper data after it has
@@ -82,29 +82,29 @@ class PieChart extends Component {
       // sort,
       requestOptions
     )
-      .then(response => response.json())
+      .then((response) => response.json())
       .then(
-        json => {
+        (json) => {
           // Puts the data into the state
           this.setState({
             isLoaded: true,
             // Maps just the important data and enters it into the state data
-            data: json.businesses.map(item => {
+            data: json.businesses.map((item) => {
               return item;
             }),
             center: {
               lat: latitude,
-              lng: longitude
+              lng: longitude,
             },
             area: area,
             //type: type
-            type: this.props.foodCategory
+            type: this.props.foodCategory,
           });
         },
-        error => {
+        (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
       );
@@ -136,7 +136,7 @@ class PieChart extends Component {
         backgroundColor: null,
         animationEnabled: true,
         title: {
-          text: "Yelp Top 10 Most Reviewed"
+          text: "Yelp Top 10 Most Reviewed",
         },
         data: [
           {
@@ -155,7 +155,7 @@ class PieChart extends Component {
                 rating: data[0].rating,
                 price: data[0].price,
                 location: data[0].location.display_address,
-                review: data[0].review_count
+                review: data[0].review_count,
               },
               {
                 y: (100 * Number(data[1].review_count)) / totalReviews,
@@ -163,7 +163,7 @@ class PieChart extends Component {
                 rating: data[1].rating,
                 price: data[1].price,
                 location: data[1].location.display_address,
-                review: data[1].review_count
+                review: data[1].review_count,
               },
               {
                 y: (100 * Number(data[2].review_count)) / totalReviews,
@@ -171,7 +171,7 @@ class PieChart extends Component {
                 rating: data[2].rating,
                 price: data[2].price,
                 location: data[2].location.display_address,
-                review: data[2].review_count
+                review: data[2].review_count,
               },
               {
                 y: (100 * Number(data[3].review_count)) / totalReviews,
@@ -179,7 +179,7 @@ class PieChart extends Component {
                 rating: data[3].rating,
                 price: data[3].price,
                 location: data[3].location.display_address,
-                review: data[3].review_count
+                review: data[3].review_count,
               },
               {
                 y: (100 * Number(data[4].review_count)) / totalReviews,
@@ -187,7 +187,7 @@ class PieChart extends Component {
                 rating: data[4].rating,
                 price: data[4].price,
                 location: data[4].location.display_address,
-                review: data[4].review_count
+                review: data[4].review_count,
               },
               {
                 y: (100 * Number(data[5].review_count)) / totalReviews,
@@ -195,7 +195,7 @@ class PieChart extends Component {
                 rating: data[5].rating,
                 price: data[5].price,
                 location: data[5].location.display_address,
-                review: data[5].review_count
+                review: data[5].review_count,
               },
               {
                 y: (100 * Number(data[6].review_count)) / totalReviews,
@@ -203,7 +203,7 @@ class PieChart extends Component {
                 rating: data[6].rating,
                 price: data[6].price,
                 location: data[6].location.display_address,
-                review: data[6].review_count
+                review: data[6].review_count,
               },
               {
                 y: (100 * Number(data[7].review_count)) / totalReviews,
@@ -211,7 +211,7 @@ class PieChart extends Component {
                 rating: data[7].rating,
                 price: data[7].price,
                 location: data[7].location.display_address,
-                review: data[7].review_count
+                review: data[7].review_count,
               },
               {
                 y: (100 * Number(data[8].review_count)) / totalReviews,
@@ -219,7 +219,7 @@ class PieChart extends Component {
                 rating: data[8].rating,
                 price: data[8].price,
                 location: data[8].location.display_address,
-                review: data[8].review_count
+                review: data[8].review_count,
               },
               {
                 y: (100 * Number(data[9].review_count)) / totalReviews,
@@ -227,11 +227,11 @@ class PieChart extends Component {
                 rating: data[9].rating,
                 price: data[9].price,
                 location: data[9].location.display_address,
-                review: data[9].review_count
-              }
-            ]
-          }
-        ]
+                review: data[9].review_count,
+              },
+            ],
+          },
+        ],
       };
 
       /**
@@ -260,13 +260,13 @@ class PieChart extends Component {
         var imageStyle = {
           // height: "100%",
           // width: "100%",
-          valign: "top"
+          valign: "top",
         };
 
         // style of the yelp link image
         var yelpImageStyle = {
           height: "30px",
-          width: "45px"
+          width: "45px",
         };
 
         // stores only the top 10 data items
@@ -306,7 +306,7 @@ class PieChart extends Component {
               <div className="reviewChart">
                 <CanvasJSChart
                   options={options}
-                  onRef={ref => (this.chart = ref)}
+                  onRef={(ref) => (this.chart = ref)}
                 />
                 {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
               </div>
